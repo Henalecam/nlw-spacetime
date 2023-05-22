@@ -37,12 +37,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 exports.uploadRoutes = void 0;
+var node_crypto_1 = require("node:crypto");
+var node_path_1 = require("node:path");
+var node_fs_1 = require("node:fs");
+var node_stream_1 = require("node:stream");
+var node_util_1 = require("node:util");
+var pump = node_util_1.promisify(node_stream_1.pipeline);
 function uploadRoutes(app) {
     return __awaiter(this, void 0, void 0, function () {
         var _this = this;
         return __generator(this, function (_a) {
             app.post('/upload', function (request, reply) { return __awaiter(_this, void 0, void 0, function () {
-                var upload, mimeTypeRegex, isValidFileFormat;
+                var upload, mimeTypeRegex, isValidFileFormat, fileId, extension, fileName, writeStream, fullUrl, fileUrl;
                 return __generator(this, function (_a) {
                     switch (_a.label) {
                         case 0: return [4 /*yield*/, request.file({
@@ -60,12 +66,19 @@ function uploadRoutes(app) {
                             if (!isValidFileFormat) {
                                 return [2 /*return*/, reply.status(400).send()];
                             }
-                            console.log(upload.filename);
-                            return [2 /*return*/];
+                            fileId = node_crypto_1.randomUUID();
+                            extension = node_path_1.extname(upload.filename);
+                            fileName = fileId.concat(extension);
+                            writeStream = node_fs_1.createWriteStream(node_path_1.resolve(__dirname, '../ ../uploads/', fileName));
+                            return [4 /*yield*/, pump(upload.file, writeStream)];
+                        case 2:
+                            _a.sent();
+                            fullUrl = request.protocol.concat('://').concat(request.hostname);
+                            fileUrl = new URL("/uploads/" + fileName, fullUrl).toString();
+                            return [2 /*return*/, { fileUrl: fileUrl }];
                     }
                 });
             }); });
-            x;
             return [2 /*return*/];
         });
     });
