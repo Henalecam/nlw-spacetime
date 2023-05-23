@@ -1,4 +1,5 @@
 import {
+  Image,
   ScrollView,
   Switch,
   Text,
@@ -7,13 +8,23 @@ import {
   View,
 } from 'react-native'
 import NLWLogo from '../src/assets/nlw-spacetime-logo.svg'
-import { Link } from 'expo-router'
+import { Link, useRouter } from 'expo-router'
 import Icon from '@expo/vector-icons/Feather'
 import React, { useState } from 'react'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import * as ImagePicker from 'expo-image-picker'
+import * as SecureStore from 'expo-secure-store'
+import { api } from '../src/lib/api'
+
 
 export default function NewMemory() {
   const { bottom, top } = useSafeAreaInsets()
+
+  const router = useRouter()
+
+  const [preview, setPreview] = useState<strin | null> (null)
+
+  const [content, setContent] = useState('')
 
   const [isPublic, setIsPublic] = useState(false)
   return (
