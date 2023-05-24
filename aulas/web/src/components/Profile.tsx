@@ -8,13 +8,13 @@ export function Profile() {
     <div className="flex items-center gap-3 text-left">
       <Image
         src={avatarUrl}
-        width={40}
-        height={40}
+        width={100}
+        height={100}
         alt=""
-        className="h-10 w-10 rounded-full"
+        className="h-40 w-40 rounded-full"
       />
 
-      <p className="max-w-[140px] text-sm leading-snug">
+      <p className="max-w-[140px] text-base leading-snug">
         {name}
         <a
           href="/api/auth/logout"
