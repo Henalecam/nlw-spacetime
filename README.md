@@ -33,5 +33,5 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
   </a>
 </p>
 
-![Project image(./git-content/nlw-spacetime.png)]
+![Project image](./git-content/nlw-spacetime.png)
 <!--END_SECTION:footer-->
