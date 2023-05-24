@@ -37,21 +37,22 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+exports.NewMemoryForm = void 0;
+var lucide_react_1 = require("lucide-react");
+var MediaPicker_1 = require("./MediaPicker");
 var api_1 = require("@/lib/api");
 var js_cookie_1 = require("js-cookie");
 var navigation_1 = require("next/navigation");
-funcion;
-NewMemoryForm();
-{
-    var router_1 = navigation_1.useRouter();
+function NewMemoryForm() {
+    var router = navigation_1.useRouter();
     function handleCreateMemory(event) {
         return __awaiter(this, void 0, void 0, function () {
-            var formDate, fileToUpload, coverUrl, uploadFormData, uploadResponse, token;
+            var formData, fileToUpload, coverUrl, uploadFormData, uploadResponse, token;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
                         event.preventDefault();
-                        formDate = new FormData(event.currentTarget);
+                        formData = new FormData(event.currentTarget);
                         fileToUpload = formData.get('coverUrl');
                         coverUrl = '';
                         if (!fileToUpload) return [3 /*break*/, 2];
@@ -70,26 +71,27 @@ NewMemoryForm();
                                 isPublic: formData.get('isPublic')
                             }, {
                                 headers: {
-                                    Authorization: "Bearer " + token + "}"
+                                    Authorization: "Bearer " + token
                                 }
                             })];
                     case 3:
                         _a.sent();
-                        router_1.push('/');
+                        router.push('/');
                         return [2 /*return*/];
                 }
             });
         });
     }
     return (React.createElement("form", { onSubmit: handleCreateMemory, className: "flex flex-1 flex-col gap-2" },
-        React.createElement("div", { className: 'flex items-center gap-4' },
-            React.createElement("label", { htmlFor: 'media', className: 'flex cursor-pointer items-center gap-1.5 text-sm text-gray-200 hover:text-gray-100' },
-                React.createElement(lucide_react_1.Camera, { className: 'h-4 w-4' }),
+        React.createElement("div", { className: "flex items-center gap-4" },
+            React.createElement("label", { htmlFor: "media", className: "flex cursor-pointer items-center gap-1.5 text-sm text-gray-200 hover:text-gray-100" },
+                React.createElement(lucide_react_1.Camera, { className: "h-4 w-4" }),
                 "Anexar m\u00EDdia"),
-            React.createElement("label", { htmlFor: "isPublic", className: 'flex items-center gap-1.5 text-sm text-gray-200 hover:text-gray-100' },
-                React.createElement("input", { type: "checkbox", name: "isPublic", id: "isPublic", value: 'true', className: 'h-4 w-4 rounded border-gray-400 bg-gray-700 text-purple-500' }),
+            React.createElement("label", { htmlFor: "isPublic", className: "flex items-center gap-1.5 text-sm text-gray-200 hover:text-gray-100" },
+                React.createElement("input", { type: "checkbox", name: "isPublic", id: "isPublic", value: "true", className: "h-4 w-4 rounded border-gray-400 bg-gray-700 text-purple-500" }),
                 "Tornar mem\u00F3ria p\u00FAblica")),
         React.createElement(MediaPicker_1.MediaPicker, null),
-        React.createElement("textarea", { name: 'content', spellCheck: false, className: 'w-full flex-1 resize-none rounded border-0 bg-transparent p-0 text-lg leading-relaxed text-gray-100 placeholder:text-gray-400 focus:ring-0', placeholder: 'Escreva sua mem\u00F3ria... Fique livre para adicionar fotos, v\u00EDdeos e relatos sobre essa experi\u00EAncia que voc\u00EA quer lembrar para sempre.' }),
+        React.createElement("textarea", { name: "content", spellCheck: false, className: "w-full flex-1 resize-none rounded border-0 bg-transparent p-0 text-lg leading-relaxed text-gray-100 placeholder:text-gray-400 focus:ring-0", placeholder: "Fique livre para adicionar fotos, v\u00EDdeos e relatos sobre essa experi\u00EAncia que voc\u00EA quer lembrar para sempre." }),
         React.createElement("button", { type: "submit", className: "inline-block self-end rounded-full bg-green-500 px-5 py-3 font-alt text-sm uppercase leading-none text-black hover:bg-green-600" }, "Salvar")));
 }
+exports.NewMemoryForm = NewMemoryForm;
